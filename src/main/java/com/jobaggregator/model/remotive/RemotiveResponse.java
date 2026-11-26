@@ -3,7 +3,6 @@ package com.jobaggregator.model.remotive;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 public record RemotiveResponse(List<Job> jobs) {
