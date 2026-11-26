@@ -1,4 +1,4 @@
-package com.jobaggregator.client;
+package com.jobaggregator.http;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
