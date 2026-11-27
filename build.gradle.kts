@@ -20,12 +20,11 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2")
+    implementation("tools.jackson.core:jackson-databind:3.2.4")
 
     testImplementation(platform("org.junit:junit-bom:5.11.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.assertj:assertj-core:3.27.3")
+    testImplementation("org.assertj:assertj-core:3.27.7")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

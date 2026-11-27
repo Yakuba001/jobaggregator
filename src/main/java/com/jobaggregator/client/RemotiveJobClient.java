@@ -1,10 +1,10 @@
 package com.jobaggregator.client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jobaggregator.http.HttpClientProvider;
 import com.jobaggregator.http.ObjectMapperProvider;
 import com.jobaggregator.model.remotive.RemotiveResponse;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import java.net.URI;
 import java.net.URLEncoder;
@@ -40,7 +40,7 @@ public class RemotiveJobClient {
                    if (response.statusCode() == 200) {
                        try {
                            return mapper.readValue(response.body(), RemotiveResponse.class);
-                       } catch (JsonProcessingException e) {
+                       } catch (JacksonException e) {
                            throw new RuntimeException("Failed deserialization", e);
                        }
                    } else throw new RuntimeException("Failed, response code:" + response.statusCode());
