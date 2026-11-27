@@ -18,17 +18,23 @@ import java.util.concurrent.CompletableFuture;
 public class RemotiveJobClient {
 
     private static final String BASE_URL = "https://remotive.com/api/remote-jobs";
+    private final String baseUrl;
     private final HttpClient client;
     private final ObjectMapper mapper;
 
     public RemotiveJobClient() {
+        this(BASE_URL);
+    }
+
+    public RemotiveJobClient(String baseUrl) {
+        this.baseUrl = baseUrl;
         this.client = HttpClientProvider.getClient();
         this.mapper = ObjectMapperProvider.getMapper();
     }
 
     public CompletableFuture<RemotiveResponse> fetchJobsJson(String query) {
         String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
-        URI uri = URI.create(BASE_URL + "?search=" + encodedQuery);
+        URI uri = URI.create(baseUrl + "?search=" + encodedQuery);
         HttpRequest request = HttpRequest.newBuilder(uri)
                 .timeout(Duration.ofSeconds(10))
                 .header("Accept", "application/json")
