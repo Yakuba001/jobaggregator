@@ -3,6 +3,7 @@ package com.jobaggregator;
 import com.jobaggregator.client.RemotiveJobClient;
 import com.jobaggregator.http.HttpClientProvider;
 import com.jobaggregator.model.remotive.RemotiveResponse;
+import com.jobaggregator.output.ConsolePrinter;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -18,29 +19,8 @@ public class Main {
         List<RemotiveResponse> allResults = allRequests.stream()
                 .map(CompletableFuture::join)
                 .toList();
-        temporaryMapper(allResults);
+        ConsolePrinter.print(allResults);
 
         HttpClientProvider.shutdown();
-    }
-
-    private static void temporaryMapper(List<RemotiveResponse> responses) {
-        responses.stream()
-                .flatMap(response -> response.jobs().stream())
-                .map(job -> """
-                        Job id: %d
-                        URL: %s
-                        Title: %s
-                        Date: %s
-                        Location: %s
-                        Description: %s
-                        """.formatted(
-                        job.id(),
-                        job.url(),
-                        job.title(),
-                        job.publicationDate(),
-                        job.candidateReqLocations(),
-                        job.description().substring(0, Math.min(job.description().length(), 150)) + "..."
-                ))
-                .forEach(System.out::println);
     }
 }
