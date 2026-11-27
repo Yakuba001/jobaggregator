@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation("tools.jackson.core:jackson-databind:3.2.4")
+    implementation("org.jsoup:jsoup:1.24.1")
 
     testImplementation(platform("org.junit:junit-bom:5.11.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")

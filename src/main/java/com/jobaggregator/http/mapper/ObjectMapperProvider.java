@@ -1,4 +1,4 @@
-package com.jobaggregator.http;
+package com.jobaggregator.http.mapper;
 
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.ObjectMapper;

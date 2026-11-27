@@ -27,14 +27,12 @@ public class Main {
         responses.stream()
                 .flatMap(response -> response.jobs().stream())
                 .map(job -> """
-                        Job id: %d
                         URL: %s
                         Title: %s
                         Date: %s
                         Location: %s
                         Description: %s
                         """.formatted(
-                        job.id(),
                         job.url(),
                         job.title(),
                         job.publicationDate(),

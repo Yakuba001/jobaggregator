@@ -1,7 +1,7 @@
 package com.jobaggregator.client;
 
 import com.jobaggregator.http.HttpClientProvider;
-import com.jobaggregator.http.ObjectMapperProvider;
+import com.jobaggregator.http.mapper.ObjectMapperProvider;
 import com.jobaggregator.model.remotive.RemotiveResponse;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
@@ -35,7 +35,7 @@ public class RemotiveJobClient {
                 .header("User-Agent", "JavaJobAggregator")
                 .GET()
                 .build();
-        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8))
                 .thenApply(response -> {
                    if (response.statusCode() == 200) {
                        try {
